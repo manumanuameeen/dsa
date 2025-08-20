@@ -1,0 +1,10 @@
+1. Name: John Smith, Age: 28, Email: john.smith@example.com, City: New York, Phone: +1-202-555-0147
+2. Name: Sarah Johnson, Age: 32, Email: sarah.johnson@example.com, City: Los Angeles, Phone: +1-310-555-0198
+3. Name: Michael Brown, Age: 24, Email: michael.brown@example.com, City: Chicago, Phone: +1-312-555-0113
+4. Name: Emily Davis, Age: 29, Email: emily.davis@example.com, City: Houston, Phone: +1-713-555-0152
+5. Name: David Wilson, Age: 35, Email: david.wilson@example.com, City: Phoenix, Phone: +1-602-555-0199
+6. Name: Jessica Miller, Age: 27, Email: jessica.miller@example.com, City: Philadelphia, Phone: +1-215-555-0185
+7. Name: Daniel Anderson, Age: 31, Email: daniel.anderson@example.com, City: San Antonio, Phone: +1-210-555-0167
+8. Name: Laura Martinez, Age: 26, Email: laura.martinez@example.com, City: San Diego, Phone: +1-619-555-0134
+9. Name: James Garcia, Age: 30, Email: james.garcia@example.com, City: Dallas, Phone: +1-214-555-0172
+10. Name: Olivia Hernandez, Age: 25, Email: olivia.hernandez@example.com, City: San Jose, Phone: +1-408-555-0158
