@@ -12,7 +12,6 @@ class HashTable {
         return total % this.size;
     }
 
-
     set(key, val) {
         let index = this.hash(key);
 
