@@ -87,8 +87,7 @@ class Trie {
 
     
          delleteWord  (word, node = this.root, depth = 0)  {
-            console.log("how many timer",depth)
-            console.log("currnode",node)
+          
             if (!node) return false;
             if (depth === word.length) {
                 
@@ -116,17 +115,18 @@ class Trie {
 const tr = new Trie();
 tr.insert("cat", "its a animal can be taimed and we can care in our home");
 tr.insert("car", "its a vehicle have four wheels");
-// tr.insert("cart", "its a blublublu");
-// tr.insert("cow", "its a animal  get milk from this animal ");
-// tr.insert("water", "this is a liquid we can drink ,it's very healthy for our health ");
-// console.log(tr.serch("car"))
-// console.log(tr.serch("cow"))
-// console.log(tr.startWith("ca"))
-// console.log(tr.autoSuggest("car"))
-// console.log(tr.getMeaning("cow"))
-// console.log(tr.getMeaning("car"))
-// console.log(tr.getMeaning("cat"))
-// console.log(tr.getMeaning("water"))
+tr.insert("cart", "its a blublublu");
+tr.insert("cow", "its a animal  get milk from this animal ");
+tr.insert("water", "this is a liquid we can drink ,it's very healthy for our health ");
+console.log(tr.serch("car"))
+console.log(tr.serch("cow"))
+console.log(tr.startWith("ca"))
+console.log(tr.autoSuggest("car"))
+console.log(tr.getMeaning("cow"))
+console.log(tr.getMeaning("car"))
+console.log(tr.getMeaning("cat"))
+console.log(tr.getMeaning("water"))
+
 tr.delleteWord("cat")
 console.log(tr.serch("cat"))
 
