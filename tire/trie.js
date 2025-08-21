@@ -1,50 +1,4 @@
 
-// class Node {
-//     constructor() {
-//         this.children = new Map();
-//         this.isEnd = false
-//     }
-// }
-
-// class Trie {
-
-//     constructor() {
-//         this.root = new Node();
-//     }
-
-//     insert(word) {
-
-//         let node = this.root;
-//         for (let char of word) {
-//             if (!node.children.has(char)) {
-//                 node.children.set(char,new Node())
-//             }
-//             node = node.children.get(char)
-//         }
-//          node.isEnd = true;
-//     }
-
-//     search(word) {
-//         let node = this.root;
-//         for (let char of word) {
-          
-//             if (!node.children.has(char)) {
-             
-//                 return false;
-//             }
-//             node = node.children.get(char);
-//         }
-        
-//         return node.isEnd 
-//     }
-// }
-
-// const t = new Trie()
-// t.insert("ameen");
-// t.insert("udhay");
-
-
-// console.log(t.search("ameen"));
 
 
 class TrieNode{
@@ -64,14 +18,71 @@ class Trie{
     insert(word,meaning){
         let node = this.root;
         for(let val of word){
-            if(!node.has(val)){
+            if(!node.children.has(val)){
                 node.children.set(val,new TrieNode() )
             }
             node = node.children.get(val);           
         }
 
+
+
         node.isEnd = true;
      node.meaning= meaning?meaning:null;
+    }
+
+    serch(word){
+        let node  = this.root;
+        for(let val of word){
+            if(!node.children.has(val)){
+                return false
+            }
+            node = node.children.get(val);
+        }
+        return node.isEnd
+    }
+
+    startWith(prefix){
+        let node = this.root;
+        for(let val of prefix){
+            if(!node.children.has(val)){
+                return false;
+            }
+            node = node.children.get(val)
+        }
+        return true;
+    }
+
+    autoSuggest(prefix){
+        let node = this.root;
+        for(let val of prefix){
+            if(!node.children.has(val)){
+                return [];
+            }
+            node = node.children.get(val)
+        }
+        let result = [];
+        const dfs =(node, path)=>{
+           
+            if(node.isEnd === true){
+                result.push(path);
+            }
+            for(let [val,children] of node.children){
+                   dfs(children,path+val)
+            }
+        }
+        dfs(node,prefix)
+        return result
+    }
+
+    getMeaning(word){
+        let node = this.root;
+        for(let val of word){
+            if (!node.children.has(val)) {
+                return null;
+            }
+            node  = node.children.get(val);
+        }
+       return node.isEnd?node.meaning:null
     }
 
 
@@ -80,8 +91,20 @@ class Trie{
     }
 }
 const tr = new Trie();
-tr.insert("cat","its a animal can be taimed and we can care cat in our home");
-tr.display()
+tr.insert("cat","its a animal can be taimed and we can care in our home");
+tr.insert("car","its a vehicle have four wheels");
+tr.insert("cow","its a animal  get milk from this animal ");
+tr.insert("water","this is a liquid we can drink ,it's very healthy for our health ");
+console.log(tr.serch("cat"))
+console.log(tr.serch("car"))
+console.log(tr.serch("cow"))
+console.log(tr.startWith("ca"))
+ console.log(tr.autoSuggest("ca")) 
+console.log(tr.getMeaning("cow"))
+console.log(tr.getMeaning("car"))
+console.log(tr.getMeaning("cat"))
+console.log(tr.getMeaning("water"))
+// tr.display()
 
 
 
