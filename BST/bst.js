@@ -1,7 +1,7 @@
 
 
 
-
+//add sorted array from this
 class Node {
     constructor(val) {
         this.data = val;
