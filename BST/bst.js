@@ -4,6 +4,7 @@
 //add sorted array from this
 //find the hight  
 //do the pending work
+//do the pending work formthe chat gpt given
 // ---------------------->
 class Node {
     constructor(val) {
