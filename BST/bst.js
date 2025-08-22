@@ -1,132 +1,96 @@
 
+
+
+
 class Node {
     constructor(val) {
-        this.value = val;
-        this.rigth = this.left = null
+        this.data = val;
+        this.left = null;
+        this.rigth = null;
     }
-}
 
+}
 class BST {
     constructor() {
         this.root = null;
     }
 
-    insert(value) {
-        let newNode = new Node(value)
-        if (this.isEmpty()) {
-            this.root = newNode;
-        } else {
-            this.insertNode(this.root, newNode)
-        }
+    isEmpty() {
+        return this.root === null
     }
 
-    insertNode(root, newNode) {
-        if (newNode.value < root.value) {
+    insert(val) {
+        let newNode = new Node(val);
+        if (this.isEmpty()) {
+            this.root = newNode;
+            return
+        } else {
+            this._insert(this.root, newNode)
+        }
+
+    }
+
+    _insert(root, newNode) {
+        if (root.data > newNode.data) {
             if (root.left === null) {
                 root.left = newNode;
             } else {
-                this.insertNode(root.left, newNode)
+                this._insert(root.left, newNode)
             }
-        } else if (newNode.value > root.value) {
+        } else if (root.data < newNode.data) {
             if (root.rigth === null) {
-                root.rigth = newNode
+                root.rigth = newNode;
             } else {
-                this.insertNode(root.rigth, newNode)
+                this._insert(root.rigth, newNode);
             }
-
         }
     }
 
-    isEmpty() {
-        return this.root === null;
-    }
 
-
-
-    // search(root , target){
-    //     if (!root) {
-    //         return false;
-    //     } else {
-    //         if (root.value === target){
-    //             return true;
-    //         } else if (target < root.value){
-    //            return  this.search(root.left, target);
-    //         } else {
-    //            return this.search(root.rigth, target);
-    //         }
-    //     }
-    // }
-    search(root, target) {
-        if (root) {
+    serach(target, root = this.root) {
+        if (!root) {
             return false;
         } else {
-            if (target === root.value) {
-                return true
+
+            if (root.data === target) {
+                return true;
+            } else if (target > root.data) {
+                return this.serach(target, root.rigth)
+            } else if (target < root.data) {
+                return this.serach(target, root.left)
             }
-            else if (target < root.value) {
-                return this.search(root.left, target);
-            } else {
-                return this.search(root.rigth, target)
-            }
         }
     }
 
-    preOrder(root) {
-        if (root) {
-            console.log(root.value);
-            this.preOrder(root.left)
-            this.preOrder(root.rigth)
+
+    preOrder(node = this.root) {
+
+        if (node) {
+            console.log(node.data);
+            this.preOrder(node.left)
+            this.preOrder(node.rigth)
         }
     }
+    postOrder(node = this.root) {
 
-    postOrder(root) {
-        if (root) {
-            this.postOrder(root.left)
-            this.postOrder(root.rigth)
-            console.log(root.value)
+        if (node) {
+            this.preOrder(node.left)
+            this.preOrder(node.rigth)
+            console.log(node.data);
         }
     }
+    inOrder(node = this.root) {
 
-    inOrder(root) {
-        if (root) {
-            this.inOrder(root.left)
-            console.log(root.value);
-            this.inOrder(root.rigth)
+        if (node) {
+            this.preOrder(node.left)
+            console.log(node.data);
+            this.preOrder(node.rigth)
         }
     }
-
-    sortArr(root, arr = []) {
-        if (root) {
-            this.sortArr(root.left, arr);
-            arr.push(root.value);
-            this.sortArr(root.rigth, arr);
-        }
-        return arr;
-    }
-
-    higth(root) {
-        if (!root) return 0
-        return 1 + Math.max(this.higth(root.left), this.higth(root.rigth))
-
-    }
-
 }
-
-
-const bst = new BST();
-
-bst.insert(6)
-bst.insert(4)
-bst.insert(9)
-bst.insert(8)
-bst.insert(3)
+const bst = new BST()
+bst.insert(5)
+bst.insert(7)
 bst.insert(2)
-
-
-// console.log(bst.search(bst.root, 111))
-// bst.preOrder(bst.root)
-bst.postOrder(bst.root)
-// bst.inOrder(bst.root)
-// bst.display()
-console.log(bst.sortArr(bst.root))
-console.log(bst.higth(bst.root))
+bst.preOrder()
+console.log(bst.serach(2))
