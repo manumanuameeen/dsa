@@ -2,6 +2,8 @@
 
 
 //add sorted array from this
+//find the hight  
+//do the pending work
 class Node {
     constructor(val) {
         this.data = val;
