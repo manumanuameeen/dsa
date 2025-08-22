@@ -15,65 +15,95 @@ class Trie {
         this.root = new TrieNode();
     }
 
-    insert(word, meaning) {
+  
+
+
+    insert(word,meaning){
         let node = this.root;
-        for (let val of word) {
-            if (!node.children.has(val)) {
-                node.children.set(val, new TrieNode())
+        for(let val of word){
+            if(!node.children.has(val)){
+            node.children.set(val,new TrieNode());
             }
             node = node.children.get(val);
         }
 
-
-
         node.isEnd = true;
-        node.meaning = meaning ? meaning : null;
+        if(meaning){
+            node.meaning = meaning
+        }else{
+            node.meaning = null;
+        }
     }
 
-    serch(word) {
+
+    serch(word){
         let node = this.root;
-        for (let val of word) {
-            if (!node.children.has(val)) {
-                return false
+        for(let char of word){
+            if(!node.children.has(char)){
+                return false;
             }
-            node = node.children.get(val);
+            node = node.children.get(char);
         }
         return node.isEnd
     }
 
-    startWith(prefix) {
-        let node = this.root;
-        for (let val of prefix) {
-            if (!node.children.has(val)) {
-                return false;
-            }
-            node = node.children.get(val)
+  
+startWith(prefix){
+    let node = this.root;
+    for(let char of prefix){
+        if(!node.children.has(char)){
+            return false;
         }
-        return true;
+        node = node.children.get(char);
     }
 
-    autoSuggest(prefix) {
-        let node = this.root;
-        for (let val of prefix) {
-            if (!node.children.has(val)) {
+    return true;
+}
+
+    // autoSuggest(prefix) {
+    //     let node = this.root;
+    //     for (let val of prefix) {
+    //         if (!node.children.has(val)) {
+    //             return [];
+    //         }
+    //         node = node.children.get(val)
+    //     }
+    //     let result = [];
+    //     const dfs = (node, path) => {
+
+    //         if (node.isEnd === true) {
+    //             result.push({ word: path, meaning: node.meaning });
+    //         }
+    //         for (let [val, children] of node.children) {
+    //             dfs(children, path + val)
+    //         }
+    //     }
+    //     dfs(node, prefix)
+    //     return result
+    // }
+
+
+    autoSuggest(prefix){
+        let node =  this.root;
+        for(let char of prefix){
+            if(!node.children.has(char)){
                 return [];
             }
-            node = node.children.get(val)
+            node = node.children.get(char);
         }
+        
         let result = [];
-        const dfs = (node, path) => {
-
-            if (node.isEnd === true) {
-                result.push({ word: path, meaning: node.meaning });
+        const dfs =(node,path)=>{
+            if(node.isEnd){
+                result.push({word:path,meaning:node.meaning});
             }
-            for (let [val, children] of node.children) {
-                dfs(children, path + val)
+            for(let [key,children] of node.children){
+                dfs(children,path+key)
             }
         }
-        dfs(node, prefix)
+        dfs(node,prefix);
         return result
     }
-
     getMeaning(word) {
         let node = this.root;
         for (let val of word) {
@@ -118,17 +148,18 @@ tr.insert("car", "its a vehicle have four wheels");
 tr.insert("cart", "its a blublublu");
 tr.insert("cow", "its a animal  get milk from this animal ");
 tr.insert("water", "this is a liquid we can drink ,it's very healthy for our health ");
-console.log(tr.serch("car"))
-console.log(tr.serch("cow"))
-console.log(tr.startWith("ca"))
+// console.log(tr.serch("car"))
+// console.log(tr.serch("cow"))
+// console.log(tr.startWith("ca"))
 console.log(tr.autoSuggest("car"))
-console.log(tr.getMeaning("cow"))
-console.log(tr.getMeaning("car"))
-console.log(tr.getMeaning("cat"))
-console.log(tr.getMeaning("water"))
+console.log(tr.autoSuggest("w"))
+// console.log(tr.getMeaning("cow"))
+// console.log(tr.getMeaning("car"))
+// console.log(tr.getMeaning("cat"))
+// console.log(tr.getMeaning("water"))
 
 tr.delleteWord("cat")
-console.log(tr.serch("cat"))
+// console.log(tr.serch("cat"))
 
 // tr.display()
 
