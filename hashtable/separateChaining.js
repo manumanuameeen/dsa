@@ -56,6 +56,7 @@ class HashTable {
 const sc = new HashTable();
 
 sc.set("name","ameen");
+sc.set("name","savad");
 sc.set("age",18);
 sc.set("place","pmna");
 console.log(sc.get("name"));

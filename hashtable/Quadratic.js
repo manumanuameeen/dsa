@@ -12,17 +12,20 @@ class HashTable {
         return total % this.size;
     }
 
-    set(key, val) {
-        let index = this.hash(key);
 
-        let i = 0;
+
+    set(key, val) {
+        let index = this.hash(key)
+        let i = 0
+
         while (this.table[(index * i * i) % this.size] && this.table[(index * i * i) % this.size][0] !== key) {
             i++
-            if (i === this.size)break;
+            if (this.size === i) break;
         }
-        this.table[(index * i * i) % this.size] = [key, val];
-        return true;
+        this.table[(index * i * i) % this.size] = [key, val]
+        return true
     }
+
 
     get(key) {
         let index = this.hash(key);
@@ -32,24 +35,26 @@ class HashTable {
                 return this.table[(index * i * i) % this.size][1];
             }
             i++;
-            if (i === this.size)break;
+            if (this.size === i) break;
         }
         return null;
     }
 
-    remove(key) {
-        let index = this.hash(key);
-        let i = 0;
 
-        while (this.table[(index * i * i) % this.size]) {
-            if (this.table[(index * i * i) % this.size][0] === key) {
-                this.table[(index * i * i) % this.size] = ["<deleted>", null];
+  
+
+    remove(key){
+        let index = this.hash(key);
+        let i =0 ;
+        while(this.table[(index*i*i)%this.size]){
+            if(this.table[(index*i*i)%this.size][0] === key){
+                this.table[(index*i*i)%this.size] = ["<Deleted",null];
                 return true;
             }
             i++;
-            if (i === this.size) return false;
+            if(this.size === i)break;
         }
-        return flase
+        return false;
     }
 }
 
@@ -58,6 +63,7 @@ qd.set("name", "ameen");
 qd.set("age", 18);
 
 
+console.log(qd.get("name"))
 console.log(qd.get("age"))
 console.log(qd.remove("age"))
 console.log(qd.get("age"))

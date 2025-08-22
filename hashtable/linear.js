@@ -37,6 +37,7 @@ class HashTable {
         return null
     }
 
+  
     remove(key) {
         let index = this.hash(key);
         let started = index;
@@ -50,6 +51,7 @@ class HashTable {
         }
         return false;
     }
+  
 }
 
 const lp = new HashTable();

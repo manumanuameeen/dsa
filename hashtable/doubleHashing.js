@@ -36,42 +36,40 @@ class HashTable {
     h2(key) {
         return 5 - (this.hash(key) % 5)
     }
+  
+
     set(key, val) {
-        let index = this.h1(key)
-        let step = this.h2(key)
-        let i = 0;
-        while (this.table[index + i * step] &&
-            this.table[index + i * step][0] !== key
-        ) {
-            i++
-            if (i === this.size) {
-                throw new Error("the table is full")
-            }
-        }
-
-        if (!this.table[index + i * step]) this.count++
-        this.table[index + i * step] = [key, val];
-        if (this.loadFactor() > 0.7) {
-            this.reSizing()
-        }
-
-        return true
-    }
-    get(key) {
         let index = this.h1(key);
         let step = this.h2(key);
         let i = 0;
-
-        while (this.table[index + i * step]) {
-            if (this.table[index + i * step][0] === key) {
-                return this.table[index + i * step][1];
+        while (this.table[(index + i * step) % this.size] && this.table[(index + i * step)][0] !== key) {
+            i++
+            if (this.size === i) break
+            if (!this.table[(index + i * step)]) {
+                this.count++;
+                this.table[(index + i * step)] = [key, val];
             }
-            i++;
-            if (i === this.size) break;
+            if (this.loadFactor() > 0.7) {
+                this.reSizing();
+            }
         }
-        return undefined;
+        return true;
     }
 
+   
+    get(key){
+        let index = this.h1(key)
+        let step = this.h2(key);
+        let i = 0;
+        while(this.table[(index+i*step)]){
+            if(this.table[(index+i*step)][0] === key){
+                return this.table[(index+i*step)][1];
+            }
+            i++;
+            if(this.size === i )break;
+        }
+        return false
+    }
     remove(key) {
         let index = this.h1(key);
         let step = this.h2(key);
