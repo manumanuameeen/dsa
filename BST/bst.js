@@ -1,6 +1,8 @@
 
 //pending task
 
+
+
 //add sorted array from this
 //find the hight  
 //do the pending work
@@ -83,18 +85,60 @@ class BST {
             console.log(node.data);
         }
     }
-    inOrder(node = this.root) {
-
+    inOrder(arr = [], node = this.root) {
         if (node) {
-            this.preOrder(node.left)
-            console.log(node.data);
-            this.preOrder(node.rigth)
+            this.inOrder(arr, node.left)
+            arr.push(node.data);
+            this.inOrder(arr, node.rigth)
         }
+        return arr
+    }
+
+
+    hight(root = this.root) {
+        if (!root) {
+            return 0
+        }
+        return 1 + Math.max(this.hight(root.left), this.hight(root.rigth))
+    }
+
+    largest(root=this.root) {
+        if (!root) return null;
+        if (!root.rigth) return root.data
+        return this.largest(root.rigth)
+    }
+
+    secLargesy(node = this.root,parent = null){
+        if(!node)return null;
+
+        if(!node.rigth){
+            if(node.left){
+               return  this.sechelper(node.left)
+            }
+            return parent?parent.data:null;
+        }
+        return this.secLargesy(node.rigth,node)
+    }
+    sechelper(node){
+        if(!node.rigth)return node.data
+        return this.sechelper(node.rigth)
     }
 }
+
+
 const bst = new BST()
-bst.insert(5)
-bst.insert(7)
-bst.insert(2)
-bst.preOrder()
-console.log(bst.serach(2))
+const arr = [1, 5, 8, 4, 2, 6];
+let result = [];
+for (let i = 0; i < arr.length; i++) {
+    bst.insert(arr[i]);
+}
+
+console.log(bst.inOrder())
+console.log(bst.hight())
+console.log(bst.largest())
+console.log(bst.secLargesy())
+// bst.insert(5)
+// bst.insert(7)
+// bst.insert(2)
+// bst.preOrder()
+// console.log(bst.serach(2))
