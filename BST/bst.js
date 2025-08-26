@@ -102,26 +102,61 @@ class BST {
         return 1 + Math.max(this.hight(root.left), this.hight(root.rigth))
     }
 
-    largest(root=this.root) {
+    largest(root = this.root) {
         if (!root) return null;
         if (!root.rigth) return root.data
         return this.largest(root.rigth)
     }
 
-    secLargesy(node = this.root,parent = null){
-        if(!node)return null;
+    
 
-        if(!node.rigth){
+    secLargesy(node= this.root,parent = null){
+           if(!node){
+            return null;
+           }
+           if(!node.rigth){
             if(node.left){
-               return  this.sechelper(node.left)
+                return this.sechelper(node.left)
             }
             return parent?parent.data:null;
-        }
-        return this.secLargesy(node.rigth,node)
+
+           }
+          return this.secLargesy(node.rigth,node)
     }
-    sechelper(node){
-        if(!node.rigth)return node.data
+
+
+    sechelper(node) {
+        if (!node.rigth) return node.data
         return this.sechelper(node.rigth)
+    }
+
+    deletion() {
+        return _deletion(this.root, 8)
+    }
+    _deletion(node, val) {
+        if (!node) return null;
+
+        if (val < node.data) {
+            node.left = this._deletion(node.left, val);
+        } else if (val > node.data) {
+            node.rigth = this.deletion(node.rigth, val);
+        } else {
+            if (!node.left && !node.right) return null;
+
+            if (!node.left) return node.right
+            if (!node.right) return node.left
+
+            let rigthmin = this.findMin(node.right);
+            node.data = rigthmin.data
+            node.right = this._deletion(node.right, rigthmin.data)
+        }
+    }
+    findMin(node) {
+        let curr = node;
+        while (curr) {
+            curr = curr.left;
+        }
+        return curr
     }
 }
 
