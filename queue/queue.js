@@ -46,8 +46,9 @@ class Queue {
             console.log(node.val)
             node = node.next
         }
-
+        
     }
+
 }
 
 

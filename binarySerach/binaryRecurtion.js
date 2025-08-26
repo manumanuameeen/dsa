@@ -14,12 +14,11 @@ function binarySearch(arr,high, low, target) {
         return binarySearch(arr,high, mid +1, target);
     }
 }
+
 let arr = [
   { id: 1, name: "Alice" },
   { id: 3, name: "Bob" },
   { id: 5, name: "Charlie" }
 ];
 
-
 console.log(binarySearch(arr,arr.length-1,0,3))
-// console.log(arr[])
