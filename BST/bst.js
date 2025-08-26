@@ -136,7 +136,7 @@ class BST {
     _deletion(node, val) {
         if (!node) return null;
 
-        if (val < node.data) {
+        if (val < node.data) { 
             node.left = this._deletion(node.left, val);
         } else if (val > node.data) {
             node.rigth = this.deletion(node.rigth, val);

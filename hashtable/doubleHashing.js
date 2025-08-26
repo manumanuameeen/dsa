@@ -42,16 +42,19 @@ class HashTable {
         let index = this.h1(key);
         let step = this.h2(key);
         let i = 0;
-        while (this.table[(index + i * step) % this.size] && this.table[(index + i * step)][0] !== key) {
-            i++
-            if (this.size === i) break
-            if (!this.table[(index + i * step)]) {
-                this.count++;
-                this.table[(index + i * step)] = [key, val];
-            }
-            if (this.loadFactor() > 0.7) {
-                this.reSizing();
-            }
+        while (this.table[(index + i * step) % this.size] ) {
+if(this.table[(index + i * step)][0] == key){
+this.table[(index + i * step)][1] == val
+}
+            i++;
+            if (this.size === i) break;
+        }
+        
+        this.table[(index + i * step)] = [key, val];
+            this.count++;
+        
+        if (this.loadFactor() > 0.7) {
+            this.reSizing();
         }
         return true;
     }
@@ -89,12 +92,14 @@ class HashTable {
 const dd = new HashTable();
 dd.set("name", "ameen");
 dd.set("age", 18);
-dd.set("per", "ameen");
+dd.set("per", "ameen")
+dd.set("per", "sooperman");
 dd.set("vayas", 18);
 dd.set("peru", "ameen");
 dd.set("pryayam", 18);
 dd.set("count", 18);
 dd.set("lpa", 18);
+dd.set("cr", "15.5 Million");
 console.log(dd.get("name"));
 console.log(dd.get("age"));
 
