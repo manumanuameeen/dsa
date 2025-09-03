@@ -45,7 +45,6 @@ class LINKEDLIST {
             return true;
         }
 
-
         let curr = this.head;
         let prev = null;
         let count = 1;

@@ -36,40 +36,40 @@ class HashTable {
     h2(key) {
         return 5 - (this.hash(key) % 5)
     }
-  
+
 
     set(key, val) {
         let index = this.h1(key);
         let step = this.h2(key);
         let i = 0;
-        while (this.table[(index + i * step) % this.size] ) {
-if(this.table[(index + i * step)][0] == key){
-this.table[(index + i * step)][1] == val
-}
+        while (this.table[(index + i * step) % this.size]) {
+            if (this.table[(index + i * step)][0] == key) {
+                this.table[(index + i * step)][1] == val
+            }
             i++;
             if (this.size === i) break;
         }
-        
+
         this.table[(index + i * step)] = [key, val];
-            this.count++;
-        
+        this.count++;
+
         if (this.loadFactor() > 0.7) {
             this.reSizing();
         }
         return true;
     }
 
-   
-    get(key){
+
+    get(key) {
         let index = this.h1(key)
         let step = this.h2(key);
         let i = 0;
-        while(this.table[(index+i*step)]){
-            if(this.table[(index+i*step)][0] === key){
-                return this.table[(index+i*step)][1];
+        while (this.table[(index + i * step)]) {
+            if (this.table[(index + i * step)][0] === key) {
+                return this.table[(index + i * step)][1];
             }
             i++;
-            if(this.size === i )break;
+            if (this.size === i) break;
         }
         return false
     }

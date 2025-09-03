@@ -1,3 +1,0 @@
-Person A: Why did the programmer go broke?
-Person B: Why?
-Person A: Because he used up all his cache!
