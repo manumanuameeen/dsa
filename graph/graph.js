@@ -21,21 +21,7 @@ class Graph {
             console.log(neibours + " :" + this.adjacentList[neibours].join("-"))
         }
     }
-    // bfs(start) {
-    //     let visited = new Set();
-    //     let queue = [start]
-    //     visited.add(start);
-    //     while (queue.length > 0) {
-    //         let vertex = queue.shift()
-    //         console.log(vertex)
-    //         for (let neibours of this.adjacentList[vertex]) {
-    //             if (!visited.has(neibours)) {
-    //                 visited.add(neibours);
-    //                 queue.push(neibours)
-    //             }
-    //         }
-    //     }
-    // }
+
 
     bfs(start) {
         let visited = new Set();
@@ -64,34 +50,7 @@ class Graph {
             };
         };
     };
-    // shortestPath(start, end) {
-    //     let visited = new Set();
-    //     let queue = [start];
-    //     let parent = {};
-    //     parent[start] = null
-    //     visited.add(start);
 
-    //     while (queue.length > 0) {
-    //         let curr = queue.shift();
-    //         if (curr === end) {
-    //             let path = [];
-    //             while (curr !== null) {
-    //                 path.push(curr);
-    //                 curr = parent[curr];
-    //             }
-    //             path.reverse();
-    //             return path;
-    //         } else {
-    //             for (let neibours of this.adjacentList[curr]) {
-    //                 if (!visited.has(neibours)) {
-    //                     visited.add(neibours);
-    //                     parent[neibours] = curr;
-    //                     queue.push(neibours);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 
     shortestPath(start, end) {
         let visited = new Set();
