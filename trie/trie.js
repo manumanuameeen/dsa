@@ -60,27 +60,7 @@ startWith(prefix){
     return true;
 }
 
-    // autoSuggest(prefix) {
-    //     let node = this.root;
-    //     for (let val of prefix) {
-    //         if (!node.children.has(val)) {
-    //             return [];
-    //         }
-    //         node = node.children.get(val)
-    //     }
-    //     let result = [];
-    //     const dfs = (node, path) => {
-
-    //         if (node.isEnd === true) {
-    //             result.push({ word: path, meaning: node.meaning });
-    //         }
-    //         for (let [val, children] of node.children) {
-    //             dfs(children, path + val)
-    //         }
-    //     }
-    //     dfs(node, prefix)
-    //     return result
-    // }
+   
 
 
     autoSuggest(prefix){
