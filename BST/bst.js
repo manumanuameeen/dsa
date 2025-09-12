@@ -152,6 +152,7 @@ class BST {
             node.right = this._deletion(node.right, rigthmin.data)
         }
     }
+    
     findMin(node) {
         let curr = node;
         while (curr) {

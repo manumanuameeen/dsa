@@ -20,5 +20,5 @@ let arr = [
   { id: 3, name: "Bob" },
   { id: 5, name: "Charlie" }
 ];
-
+      
 console.log(binarySearch(arr,arr.length-1,0,3))

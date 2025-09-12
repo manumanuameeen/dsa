@@ -51,6 +51,7 @@ class Dlinkedlist {
         }
         console.log(result.join(" <--> "))
     }
+
     backWardPrint() {
         let back = this.tail;
 
@@ -100,9 +101,9 @@ class Dlinkedlist {
         }
         if(!curr){
             return -1
-        }else if(curr == this.data ){
+        }else if(curr == this.head ){
             return this.deleteHead()
-        }else if(curr = this.tail){
+        }else if(curr == this.tail){
             return this.deleteEnd()
         }
 

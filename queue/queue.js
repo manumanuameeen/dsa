@@ -42,7 +42,7 @@ class Queue {
     }
     display() {
         let node = this.head;
-        while (node) {
+        while (node){
             console.log(node.val)
             node = node.next
         }

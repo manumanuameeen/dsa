@@ -1,22 +1,52 @@
-function QuickSort(arr){
+// function QuickSort(arr){
 
-    if(arr.length <=1){
-        return arr
-    }
-    let pivot = arr[arr.length-1];
-    let left  = [];
-    let right = [];
+//     if(arr.length <=1){
+//         return arr
+//     }
+//     let pivot = arr[arr.length-1];
+//     let left  = [];
+//     let right = [];
     
 
-    for(let i =0 ; i< arr.length ;i++){
-        if(arr[i]<pivot){
-            left.push(arr[i]);
-        }else if (arr[i]>pivot){
-            right.push(arr[i]);
+//     for(let i =0 ; i< arr.length ;i++){
+//         if(arr[i]<pivot){
+//             left.push(arr[i]);
+//         }else if (arr[i]>pivot){
+//             right.push(arr[i]);
+//         }
+//     }
+
+//     return [...QuickSort(left),pivot,...QuickSort(right)]
+// }
+// let arr = [35,7,4,2,1,45,645];
+// console.log(QuickSort(arr))
+
+
+
+
+
+
+
+function quickSort(arr){
+
+if(arr.length <= 1){
+    return arr
+
+}
+
+    let privot = arr[arr.length - 1];
+    let left = [];
+    let right = [];
+
+    for(let i =0 ; i<arr.length;i++){
+        if(arr[i]>privot){
+            right.push(arr[i])
+        }else if(arr[i]<privot){
+            left.push(arr[i])
         }
     }
+    return [...quickSort(left),privot,...quickSort(right)]
 
-    return [...QuickSort(left),pivot,...QuickSort(right)]
 }
-let arr = [35,7,4,2,1,45,645];
-console.log(QuickSort(arr))
+console.log(quickSort([1,64,3,2342,5,3,0]));
+
